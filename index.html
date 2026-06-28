@@ -1,34 +1,14 @@
-<!DOCTYPE html>
-<html lang="te">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AP & TS Live Gold & Silver Rates</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; padding: 10px; margin: 0; }
-        .container { background: white; padding: 15px; max-width: 500px; margin: 10px auto; border-radius: 12px; box-shadow: 0px 4px 15px rgba(0,0,0,0.1); }
-        h1 { color: #d4af37; margin-bottom: 5px; font-size: 24px; }
-        .sub-title { color: #555; margin-top: 0; font-size: 13px; margin-bottom: 15px; }
-        .state-section { margin-top: 20px; border-top: 2px dashed #ddd; padding-top: 10px; }
-        .state-title { font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 10px; text-align: left; padding-left: 5px; }
-        
-        /* పట్టిక (Table) స్టైల్స్ */
-        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; background: #fff; font-size: 14px; }
-        th, td { border: 1px solid #dee2e6; padding: 8px; text-align: center; }
-        th { background-color: #f8f9fa; color: #333; font-weight: bold; }
-        .bg-24k { background-color: #fff8e7; font-weight: bold; color: #b8860b; }
-        .bg-22k { background-color: #fffdf0; font-weight: bold; color: #a07810; }
-        .bg-18k { background-color: #fdfbf7; color: #8a6d1c; }
-        .bg-16k { background-color: #f9f9f9; color: #555; }
-        
-        .silver-row { background-color: #f0f0f0; font-weight: bold; color: #444; }
-        .loading { font-size: 16px; color: gray; padding: 30px; }
-        .date { font-size: 12px; color: #888; margin-top: 15px; border-top: 1px solid #eee; padding-top: 8px; }
+  
+        .loading { font-size: 16px; color: #94a3b8; padding: 40px; }
+        .date { font-size: 11px; color: #64748b; margin-top: 25px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- 🔥 ఇక్కడ మీ పూర్తి పేరు లోగో లాగా మర్చబడింది -->
+    <div class="brand-header">✨ GUNTURI PRASANGI ✨</div>
+
     <h1>లైవ్ బంగారం & వెండి ధరలు</h1>
     <p class="sub-title">ఆంధ్రప్రదేశ్ & తెలంగాణ నేటి లైవ్ మార్కెట్ రేట్లు (INR)</p>
     
@@ -71,7 +51,10 @@
                     <tr class="silver-row">
                         <td>వెండి (Silver)</td>
                         <td id="ap-sil-1g">₹0</td>
-                        <td id="ap-sil-1kg">₹0 (1KG)</td>
+                        <td id="ap-sil-10g">₹0</td>
+                    </tr>
+                    <tr class="silver-row" style="background-color: rgba(255,255,255,0.04);">
+                        <td colspan="3" style="color: #cbd5e1; font-size: 13px;">AP వెండి (1 KG) ధర: <span id="ap-sil-1kg" style="color: #fff; font-size: 15px; margin-left: 5px;">₹0</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -112,7 +95,10 @@
                     <tr class="silver-row">
                         <td>వెండి (Silver)</td>
                         <td id="ts-sil-1g">₹0</td>
-                        <td id="ts-sil-1kg">₹0 (1KG)</td>
+                        <td id="ts-sil-10g">₹0</td>
+                    </tr>
+                    <tr class="silver-row" style="background-color: rgba(255,255,255,0.04);">
+                        <td colspan="3" style="color: #cbd5e1; font-size: 13px;">TS వెండి (1 KG) ధర: <span id="ts-sil-1kg" style="color: #fff; font-size: 15px; margin-left: 5px;">₹0</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -149,43 +135,23 @@
     }
 
     function updateUI(gold1g, silver1g) {
-        // లోకల్ మార్కెట్ ఖర్చుల సర్దుబాటు
         const apBaseGold = gold1g + 1.5;
         const tsBaseGold = gold1g;
         const apBaseSilver = silver1g + 0.2;
         const tsBaseSilver = silver1g;
 
-        // AP ధరల లెక్కింపు
+        // AP ధరలు
         displayRow('ap-24k', apBaseGold, 1);
         displayRow('ap-22k', apBaseGold * 0.916, 1);
         displayRow('ap-18k', apBaseGold * 0.75, 1);
         displayRow('ap-16k', apBaseGold * 0.666, 1);
         document.getElementById('ap-sil-1g').innerText = "₹" + Math.round(apBaseSilver);
+        document.getElementById('ap-sil-10g').innerText = "₹" + Math.round(apBaseSilver * 10);
         document.getElementById('ap-sil-1kg').innerText = "₹" + Math.round(apBaseSilver * 1000).toLocaleString('en-IN');
 
-        // TS ధరల లెక్కింపు
+        // TS ధరలు
         displayRow('ts-24k', tsBaseGold, 1);
         displayRow('ts-22k', tsBaseGold * 0.916, 1);
         displayRow('ts-18k', tsBaseGold * 0.75, 1);
         displayRow('ts-16k', tsBaseGold * 0.666, 1);
-        document.getElementById('ts-sil-1g').innerText = "₹" + Math.round(tsBaseSilver);
-        document.getElementById('ts-sil-1kg').innerText = "₹" + Math.round(tsBaseSilver * 1000).toLocaleString('en-IN');
-        
-        const now = new Date();
-        document.getElementById('last-updated').innerText = "చివరి అప్‌డేట్: " + now.toLocaleDateString('te-IN') + " " + now.toLocaleTimeString('te-IN');
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('rates-container').style.display = 'block';
-    }
-
-    function displayRow(elementId, rate1g, multiplier) {
-        const final1g = rate1g * multiplier;
-        const final10g = final1g * 10;
-        document.getElementById(elementId + '-1g').innerText = "₹" + Math.round(final1g).toLocaleString('en-IN');
-        document.getElementById(elementId + '-10g').innerText = "₹" + Math.round(final10g).toLocaleString('en-IN');
-    }
-
-    fetchLiveRates();
-</script>
-
-</body>
-                                                                    </html>
+        document.getElementById('ts-sil-1g').innerText
