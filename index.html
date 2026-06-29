@@ -1,102 +1,39 @@
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+class="card">
 
-        <!-- తెలంగాణ (TS) టేబుల్ -->
-        <div class="state-section">
-            <div class="state-title">📍 తెలంగాణ (Telangana)</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>క్యారెట్ / రకం</th>
-                        <th>1 గ్రాము</th>
-                        <th>10 గ్రాములు</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-24k">
-                        <td>24K ప్యూర్ గోల్డ్</td>
-                        <td id="ts-24k-1g">₹0</td>
-                        <td id="ts-24k-10g">₹0</td>
-                    </tr>
-                    <tr class="bg-22k">
-                        <td>22K ఆభరణాల బంగారం</td>
-                        <td id="ts-22k-1g">₹0</td>
-                        <td id="ts-22k-10g">₹0</td>
-                    </tr>
-                    <tr class="bg-18k">
-                        <td>18K బంగారం</td>
-                        <td id="ts-18k-1g">₹0</td>
-                        <td id="ts-18k-10g">₹0</td>
-                    </tr>
-                    <tr class="bg-16k">
-                        <td>16K బంగారం</td>
-                        <td id="ts-16k-1g">₹0</td>
-                        <td id="ts-16k-10g">₹0</td>
-                    </tr>
-                    <tr class="silver-row">
-                        <td>వెండి (Silver)</td>
-                        <td id="ts-sil-1g">₹0</td>
-                        <td id="ts-sil-10g">₹0</td>
-                    </tr>
-                    <tr class="silver-row" style="background-color: rgba(255,255,255,0.04);">
-                        <td colspan="3" style="color: #cbd5e1; font-size: 13px;">TS వెండి (1 KG) ధర: <span id="ts-sil-1kg" style="color: #fff; font-size: 15px; margin-left: 5px;">₹0</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<h3>Today's Silver Rate</h3>
 
-        <div id="last-updated" class="date"></div>
-    </div>
+<table>
+
+<tr>
+<th>Silver</th>
+<th>Price</th>
+</tr>
+
+<tr>
+<td>1 Kg</td>
+<td id="silver">Loading...</td>
+</tr>
+
+</table>
+
 </div>
 
-<script>
-    async function fetchLiveRates() {
-        try {
-            const response = await fetch('https://metals.dev');
-            if (!response.ok) throw new Error('API failed');
-            const data = await response.json();
-            if(data && data.rates) {
-                updateUI(data.rates.gold, data.rates.silver);
-            } else {
-                fallbackRates();
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            fallbackRates();
-        }
-    }
+<p class="update">
+Last Updated :
+<span id="time"></span>
+</p>
 
-    function fallbackRates() {
-        const baseGoldGram = 7430; 
-        const baseSilverGram = 92; 
-        const randomVariation = (Math.random() - 0.5) * 5;
-        updateUI(baseGoldGram + randomVariation, baseSilverGram + (randomVariation / 10));
-    }
+</div>
 
-    function updateUI(gold1g, silver1g) {
-        const apBaseGold = gold1g + 1.5;
-        const tsBaseGold = gold1g;
-        const apBaseSilver = silver1g + 0.2;
-        const tsBaseSilver = silver1g;
+<footer>
 
-        displayRow('ap-24k', apBaseGold, 1);
-        displayRow('ap-22k', apBaseGold * 0.916, 1);
-        displayRow('ap-18k', apBaseGold * 0.75, 1);
-        displayRow('ap-16k', apBaseGold * 0.666, 1);
-        document.getElementById('ap-sil-1g').innerText = "₹" + Math.round(apBaseSilver);
-        document.getElementById('ap-sil-10g').innerText = "₹" + Math.round(apBaseSilver * 10);
-        document.getElementById('ap-sil-1kg').innerText = "₹" + Math.round(apBaseSilver * 1000).toLocaleString('en-IN');
+© 2026 GP Gold & Silver Rate Today
 
-        displayRow('ts-24k', tsBaseGold, 1);
-        displayRow('ts-22k', tsBaseGold * 0.916, 1);
-        displayRow('ts-18k', tsBaseGold * 0.75, 1);
-        displayRow('ts-16k', tsBaseGold * 0.666, 1);
-        document.getElementById('ts-sil-1g').innerText = "₹" + Math.round(tsBaseSilver);
-        document.getElementById('ts-sil-10g').innerText = "₹" + Math.round(tsBaseSilver * 10);
-        document.getElementById('ts-sil-1kg').innerText = "₹" + Math.round(tsBaseSilver * 1000).toLocaleString('en-IN');
-        
-        const now = new Date();
-        document.getElementById('last-updated').innerText = "చివరి అప్‌డేట్: " + now.toLocaleDateString('te-IN') + " " + now.toLocaleTimeString('te-IN');
-        document.getElementById('loading').style.display
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+సరే. ఇది Part 1 – index.html. దీనిని index.html పేరుతో save చేయి.
+HTML
